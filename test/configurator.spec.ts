@@ -62,7 +62,7 @@ makeSuite('LendingPoolConfigurator', (testEnv: TestEnv) => {
     const {configurator, weth, helpersContract} = testEnv;
 
     
-
+    console.log(weth.address);
     await configurator.freezeReserve(weth.address);
     const {
       decimals,

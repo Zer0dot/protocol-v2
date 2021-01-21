@@ -60,7 +60,7 @@ const deployAllMockTokens = async (deployer: Signer) => {
   const protoConfigData = getReservesConfigByPool(AavePools.uniswap);
 
   for (const tokenSymbol of Object.keys(TokenContractId)) {
-    if (tokenSymbol === 'WETH') {
+    if (tokenSymbol === 'UniWETH') {
       tokens[tokenSymbol] = await deployWETHMocked();
       await registerContractInJsonDb(tokenSymbol.toUpperCase(), tokens[tokenSymbol]);
       continue;
@@ -250,7 +250,7 @@ const buildTestEnv = async (deployer: Signer, secondaryWallet: Signer) => {
   // console.log(mockTokens.UniWETH.address);
   // console.log(mockTokens.UniDAI.address);
   await deployWalletBalancerProvider();
-  await deployWETHGateway([mockTokens.WETH.address, lendingPoolAddress]);
+  await deployWETHGateway([mockTokens.UniWETH.address, lendingPoolAddress]);
 
   console.timeEnd('setup');
 };

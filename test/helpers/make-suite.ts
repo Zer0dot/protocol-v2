@@ -30,7 +30,7 @@ import { getEthersSigners, getParamPerNetwork } from '../../helpers/contracts-he
 import { WETH9Mocked } from '../../types/WETH9Mocked';
 import { WETHGateway } from '../../types/WETHGateway';
 import { solidity } from 'ethereum-waffle';
-import { AaveConfig } from '../../markets/aave';
+import { UniswapConfig } from '../../markets/uniswap';
 
 chai.use(bignumberChai());
 chai.use(almostEqual());
@@ -105,7 +105,7 @@ export async function initializeMakeSuite() {
 
   if (process.env.MAINNET_FORK === 'true') {
     testEnv.registry = await getLendingPoolAddressesProviderRegistry(
-      getParamPerNetwork(AaveConfig.ProviderRegistry, eEthereumNetwork.main)
+      getParamPerNetwork(UniswapConfig.ProviderRegistry, eEthereumNetwork.main)
     );
   } else {
     testEnv.registry = await getLendingPoolAddressesProviderRegistry();
@@ -120,12 +120,23 @@ export async function initializeMakeSuite() {
   const aWEthAddress = allTokens.find((aToken) => aToken.symbol === 'aUniWETH')?.tokenAddress;
 
   const reservesTokens = await testEnv.helpersContract.getAllReservesTokens();
-
-  const daiAddress = reservesTokens.find((token) => token.symbol === 'UniDAI')?.tokenAddress;
-  const usdcAddress = reservesTokens.find((token) => token.symbol === 'UniUSDC')?.tokenAddress;
-  const aaveAddress = reservesTokens.find((token) => token.symbol === 'UniAAVEWETH')?.tokenAddress;
-  const wethAddress = reservesTokens.find((token) => token.symbol === 'UniWETH')?.tokenAddress;
-  //console.log(reservesTokens);
+  let daiAddress: string | undefined;
+  let usdcAddress: string | undefined;
+  let aaveAddress: string | undefined;
+  let wethAddress: string | undefined;
+  if (process.env.MAINNET_FORK === 'true') {
+    daiAddress = reservesTokens.find((token) => token.tokenAddress === '0x6B175474E89094C44Da98b954EedeAC495271d0F')?.tokenAddress;
+    usdcAddress = reservesTokens.find((token) => token.tokenAddress === '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48')?.tokenAddress;
+    aaveAddress = reservesTokens.find((token) => token.tokenAddress === '0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f')?.tokenAddress;
+    wethAddress = reservesTokens.find((token) => token.tokenAddress === '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2')?.tokenAddress;
+  } else {
+    daiAddress = reservesTokens.find((token) => token.symbol === 'UniDAI')?.tokenAddress;
+    usdcAddress = reservesTokens.find((token) => token.symbol === 'UniUSDC')?.tokenAddress;
+    aaveAddress = reservesTokens.find((token) => token.symbol === 'UniAAVEWETH')?.tokenAddress;
+    wethAddress = reservesTokens.find((token) => token.symbol === 'UniWETH')?.tokenAddress;
+  }
+ 
+  console.log(reservesTokens);
   if (!aDaiAddress || !aWEthAddress) {
     //console.log("yup");
     process.exit(1);

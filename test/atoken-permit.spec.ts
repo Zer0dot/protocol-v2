@@ -102,7 +102,7 @@ makeSuite('AToken: Permit', (testEnv: TestEnv) => {
       deadline,
       permitAmount
     );
-
+    console.log("\N=====================================ADAI NAME:\N", await aDai.name());
     const ownerPrivateKey = require('../test-wallets.js').accounts[0].secretKey;
     if (!ownerPrivateKey) {
       throw new Error('INVALID_OWNER_PK');
