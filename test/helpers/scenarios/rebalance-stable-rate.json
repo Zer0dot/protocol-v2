@@ -8,7 +8,7 @@
         {
           "name": "rebalanceStableBorrowRate",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "user": "0",
             "target": "1",
             "borrowRateMode": "variable"
@@ -19,12 +19,12 @@
       ]
     },
     {
-      "description": "User 0 deposits 1000 DAI, user 1 deposits 5 ETH, borrows 600 DAI at a variable rate, user 0 rebalances user 1 (revert expected)",
+      "description": "User 0 deposits 1000 UNIDAI, user 1 deposits 5 ETH, borrows 600 UNIDAI at a variable rate, user 0 rebalances user 1 (revert expected)",
       "actions": [
         {
           "name": "mint",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "amount": "1000",
             "user": "0"
           },
@@ -33,7 +33,7 @@
         {
           "name": "approve",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "user": "0"
           },
           "expected": "success"
@@ -41,7 +41,7 @@
         {
           "name": "deposit",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "amount": "1000",
             "user": "0"
           },
@@ -50,7 +50,7 @@
         {
           "name": "mint",
           "args": {
-            "reserve": "WETH",
+            "reserve": "UNIWETH",
             "amount": "5",
             "user": "1"
           },
@@ -59,7 +59,7 @@
         {
           "name": "approve",
           "args": {
-            "reserve": "WETH",
+            "reserve": "UNIWETH",
             "user": "1"
           },
           "expected": "success"
@@ -67,7 +67,7 @@
         {
           "name": "deposit",
           "args": {
-            "reserve": "WETH",
+            "reserve": "UNIWETH",
 
             "amount": "5",
             "user": "1"
@@ -77,7 +77,7 @@
         {
           "name": "borrow",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "amount": "250",
             "borrowRateMode": "stable",
             "user": "1",
@@ -88,7 +88,7 @@
         {
           "name": "rebalanceStableBorrowRate",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "user": "0",
             "target": "1"
           },
@@ -103,7 +103,7 @@
         {
           "name": "borrow",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "amount": "200",
             "borrowRateMode": "stable",
             "user": "1",
@@ -114,7 +114,7 @@
         {
           "name": "rebalanceStableBorrowRate",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "user": "0",
             "target": "1"
           },
@@ -129,7 +129,7 @@
         {
           "name": "borrow",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "amount": "200",
             "borrowRateMode": "stable",
             "user": "1",
@@ -140,7 +140,7 @@
         {
           "name": "rebalanceStableBorrowRate",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "user": "0",
             "target": "1"
           },
@@ -155,7 +155,7 @@
         {
           "name": "borrow",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "amount": "100",
             "borrowRateMode": "stable",
             "user": "1",
@@ -166,7 +166,7 @@
         {
           "name": "rebalanceStableBorrowRate",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "user": "0",
             "target": "1"
           },
@@ -176,12 +176,12 @@
       ]
     },
     {
-      "description": "User 2 deposits ETH and borrows the remaining DAI, causing the stable rates to rise (usage ratio = 94%). User 0 tries to rebalance user 1 (revert expected)",
+      "description": "User 2 deposits ETH and borrows the remaining UNIDAI, causing the stable rates to rise (usage ratio = 94%). User 0 tries to rebalance user 1 (revert expected)",
       "actions": [
         {
           "name": "mint",
           "args": {
-            "reserve": "WETH",
+            "reserve": "UNIWETH",
             "amount": "5",
             "user": "2"
           },
@@ -190,7 +190,7 @@
         {
           "name": "approve",
           "args": {
-            "reserve": "WETH",
+            "reserve": "UNIWETH",
             "user": "2"
           },
           "expected": "success"
@@ -198,7 +198,7 @@
         {
           "name": "deposit",
           "args": {
-            "reserve": "WETH",
+            "reserve": "UNIWETH",
 
             "amount": "5",
             "user": "2"
@@ -208,7 +208,7 @@
         {
           "name": "borrow",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "amount": "190",
             "borrowRateMode": "variable",
             "user": "2"
@@ -218,7 +218,7 @@
         {
           "name": "rebalanceStableBorrowRate",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "user": "0",
             "target": "1"
           },
@@ -228,12 +228,12 @@
       ]
     },
     {
-      "description": "User 2 borrows the remaining DAI (usage ratio = 100%). User 0 rebalances user 1",
+      "description": "User 2 borrows the remaining UNIDAI (usage ratio = 100%). User 0 rebalances user 1",
       "actions": [
         {
           "name": "borrow",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "amount": "60",
             "borrowRateMode": "variable",
             "user": "2"
@@ -243,7 +243,7 @@
         {
           "name": "rebalanceStableBorrowRate",
           "args": {
-            "reserve": "DAI",
+            "reserve": "UNIDAI",
             "user": "0",
             "target": "1"
           },

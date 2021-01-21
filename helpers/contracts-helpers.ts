@@ -90,8 +90,8 @@ export const withSaveAndVerify = async <ContractType extends Contract>(
   verify?: boolean
 ): Promise<ContractType> => {
   addGas(instance.deployTransaction.gasLimit);
-  console.log("Current totalGas value:", totalGas);
-  console.log("Logged gas limit:", instance.deployTransaction.gasLimit);
+  // console.log("Current totalGas value:", totalGas);
+  // console.log("Logged gas limit:", instance.deployTransaction.gasLimit);
   await waitForTx(instance.deployTransaction);
   await registerContractInJsonDb(id, instance);
   if (DRE.network.name.includes('tenderly')) {

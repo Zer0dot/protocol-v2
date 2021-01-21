@@ -144,7 +144,6 @@ export const deposit = async (
   const { pool } = testEnv;
 
   const reserve = await getReserveAddressFromSymbol(reserveSymbol);
-
   const amountToDeposit = await convertToCurrencyDecimals(reserve, amount);
 
   const txOptions: any = {};

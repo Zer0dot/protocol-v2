@@ -115,21 +115,25 @@ export async function initializeMakeSuite() {
   testEnv.helpersContract = await getAaveProtocolDataProvider();
 
   const allTokens = await testEnv.helpersContract.getAllATokens();
-  const aDaiAddress = allTokens.find((aToken) => aToken.symbol === 'aDAI')?.tokenAddress;
+  const aDaiAddress = allTokens.find((aToken) => aToken.symbol === 'aUniDAI')?.tokenAddress;
 
-  const aWEthAddress = allTokens.find((aToken) => aToken.symbol === 'aWETH')?.tokenAddress;
+  const aWEthAddress = allTokens.find((aToken) => aToken.symbol === 'aUniWETH')?.tokenAddress;
 
   const reservesTokens = await testEnv.helpersContract.getAllReservesTokens();
 
-  const daiAddress = reservesTokens.find((token) => token.symbol === 'DAI')?.tokenAddress;
-  const usdcAddress = reservesTokens.find((token) => token.symbol === 'USDC')?.tokenAddress;
-  const aaveAddress = reservesTokens.find((token) => token.symbol === 'AAVE')?.tokenAddress;
-  const wethAddress = reservesTokens.find((token) => token.symbol === 'WETH')?.tokenAddress;
-
+  const daiAddress = reservesTokens.find((token) => token.symbol === 'UniDAI')?.tokenAddress;
+  const usdcAddress = reservesTokens.find((token) => token.symbol === 'UniUSDC')?.tokenAddress;
+  const aaveAddress = reservesTokens.find((token) => token.symbol === 'UniAAVEWETH')?.tokenAddress;
+  const wethAddress = reservesTokens.find((token) => token.symbol === 'UniWETH')?.tokenAddress;
+  //console.log(reservesTokens);
   if (!aDaiAddress || !aWEthAddress) {
+    //console.log("yup");
     process.exit(1);
   }
+  console.log(daiAddress, usdcAddress, aaveAddress, wethAddress);
   if (!daiAddress || !usdcAddress || !aaveAddress || !wethAddress) {
+    //console.log("yup2");
+
     process.exit(1);
   }
 
