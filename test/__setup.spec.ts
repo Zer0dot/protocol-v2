@@ -231,7 +231,7 @@ const buildTestEnv = async (deployer: Signer, secondaryWallet: Signer) => {
   const config = loadPoolConfig(ConfigNames.Aave);
 
   const treasuryAddress = await getTreasuryAddress(config);
-
+  console.log("Reserve params:", reservesParams);
   await initReservesByHelper(reservesParams, allReservesAddresses, admin, treasuryAddress, ZERO_ADDRESS, false);
   await configureReservesByHelper(
     reservesParams,

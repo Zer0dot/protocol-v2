@@ -345,14 +345,13 @@ export const borrow = async (
   );
 
   const amountToBorrow = await convertToCurrencyDecimals(reserve, amount);
-
+  console.log("Rate mode:", interestRateMode);
   if (expectedResult === 'success') {
     const txResult = await waitForTx(
       await pool
         .connect(user.signer)
         .borrow(reserve, amountToBorrow, interestRateMode, '0', onBehalfOf)
     );
-
     const { txCost, txTimestamp } = await getTxCostAndTimestamp(txResult);
 
     if (timeTravel) {
