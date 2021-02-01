@@ -161,7 +161,6 @@ export const initReservesByHelper = async (
     console.log('    * gasUsed: debtTokens batch', tx1.gasUsed.toString());
     console.log('    * gasUsed: aTokens and Strategy batch', tx2.gasUsed.toString());
     gasUsage = gasUsage.add(tx1.gasUsed).add(tx2.gasUsed);
-    addGas(gasUsage);
     const stableTokens: string[] = tx1.events?.map((e) => e.args?.stableToken) || [];
     const variableTokens: string[] = tx1.events?.map((e) => e.args?.variableToken) || [];
     const aTokens: string[] = tx2.events?.map((e) => e.args?.aToken) || [];
@@ -269,7 +268,7 @@ export const initReservesByHelper = async (
     console.log('    * gasUsed', tx3.gasUsed.toString());
     gasUsage = gasUsage.add(tx3.gasUsed);
   }
-
+  addGas(gasUsage);
   // Set deployer back as admin
   await waitForTx(await addressProvider.setPoolAdmin(admin));
   return gasUsage;
